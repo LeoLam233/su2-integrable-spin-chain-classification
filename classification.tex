@@ -1,0 +1,504 @@
+\documentclass[11pt]{article}
+\usepackage[margin=0.9in,vmargin=0.82in]{geometry}
+\usepackage{microtype}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{float}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[colorlinks=true,linkcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+\hypersetup{pdftitle={All-spin classification of isotropic nearest-neighbour integrable chains}}
+\newtheorem{theorem}{Theorem}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{corollary}[theorem]{Corollary}
+\newcommand{\PP}{\mathsf P}
+\newcommand{\DD}{\mathcal D}
+\newcommand{\ket}[1]{|#1\rangle}
+\newcommand{\bra}[1]{\langle#1|}
+\newcommand{\pr}[1]{|#1\rangle\langle#1|}
+\DeclareMathOperator{\diag}{diag}
+\title{All-spin classification of isotropic nearest-neighbour integrable chains}
+\author{}
+\date{November 24, 2026}
+\begin{document}
+\begin{center}
+ {\LARGE\bfseries All-spin classification of isotropic nearest-neighbour integrable chains\par}
+ \vspace{0.6em}{\small November 24, 2026}
+\end{center}
+\begin{abstract}
+We classify Hermitian $SU(2)$-invariant nearest-neighbour densities satisfying the Reshetikhin condition on every irreducible spin representation. The four classical families and the spin-three exception exhaust the list up to affine changes. Rank and reflection identities control the first spectral channels, and a pole of the rational Yang--Baxter solution fixes its branch. The exceptional branch is resolved by the sign representation of the three-site permutation group: it forces a two-valued spectrum on odd channels, and a weighted mean identity singles out spin three. The dichotomy of Shiraishi and Sanatani then gives the all-spin classification in the local-conservation-law sense.
+\end{abstract}
+
+\section{Introduction and main result}
+Kennedy \cite{Kennedy} and Batchelor--Yung \cite{BY} found four integrable families and a spin-three exception, testing the list through $S=13.5$. Bytsko \cite{Bytsko1,Bytsko2} restricted the highest channels using reduced Yang--Baxter equations; the degeneracy behind the spin-three exception was identified in the one-defect ansatz of \cite[Sec.~4.3]{Bytsko2}. The dichotomy of Shiraishi--Sanatani \cite{SS} identifies local-charge integrability with the Reshetikhin condition for every $S$, but leaves the explicit list beyond $S=13.5$ open. We classify the cubic condition directly, including the unrestricted next channel at the exceptional degeneracy.
+
+Let $n=2S\in\mathbb N_{>0}$ and let $V_S$ be the spin-$S$ irreducible representation. Write $P_j$ for the orthogonal projection onto the spin-$j$ component of $V_S\otimes V_S$, $0\le j\le n$. An invariant Hermitian density is $h=\sum_{j=0}^n\lambda_j P_j$ with real $\lambda_j$. Put
+\begin{equation}\label{RC}
+ \DD(A,B)=[[A,B],A+B],\qquad
+ \DD(h_{12},h_{23})=E_{23}-E_{12}.
+\end{equation}
+If some two-site $E$ satisfies this identity, averaging under $SU(2)$ and taking its Hermitian part yields an invariant Hermitian $E$. Affine changes $h\mapsto ah+bI$, $a\ne0$, preserve the condition by $E\mapsto a^3 E$; adding a scalar to $E$ also preserves it.
+
+\begin{theorem}\label{main}
+Every nonconstant invariant Hermitian $h$ satisfying \eqref{RC} is affinely equivalent to one of the following densities, and each of them satisfies \eqref{RC}:
+\begin{align}
+ h^{\rm I}&=\PP=\sum_{j=0}^n(-1)^{n-j}P_j,\nonumber\\
+ h^{\rm II}&=\left(\frac{n+1}{2}-(-1)^n\right)\PP-(-1)^n(n+1)P_0,\nonumber\\
+ h^{\rm III}&=\sum_{j=0}^n H_j P_j,\qquad H_j=\sum_{r=1}^j\frac1r,\quad H_0=0,\nonumber\\
+ h^{\rm IV}&=P_0,\nonumber\\
+ h^{\rm V}&=11P_0+7P_1-17P_2-11P_3-17P_4+7P_5-17P_6\quad(n=6\text{ only}).\label{list}
+\end{align}
+Coincidences between the displayed families at small $n$ are understood.
+\end{theorem}
+\begin{corollary}
+In the class of translation-invariant isotropic nearest-neighbour spin chains on irreducible spin-$S$ sites, the nonconstant Hamiltonian densities with local conserved quantities of all ranges are precisely \eqref{list}, up to affine changes. Every other nonconstant density is nonintegrable in the local-conservation-law sense of \cite{SS} (for finite periodic chains, with its stated support restriction).
+\end{corollary}
+The corollary uses the dichotomy and the equivalence with \eqref{RC} proved in \cite{SS}; the algebraic theorem itself does not use that dichotomy. The five families are known Yang--Baxter integrable models; our task is to exclude further solutions of \eqref{RC}.
+
+\subsection*{Strategy of the proof}
+Instead of solving the cubic equation in all $n+1$ pair-spin eigenvalues simultaneously, we introduce these eigenvalues one at a time, beginning with the largest pair spin. The three-site sector of total spin $3S-k$ contains exactly the first $k+1$ channels in this order. Moving to the next sector introduces just one additional channel. The auxiliary operator $E$ follows the same ordering, and its already determined eigenvalues can be eliminated from the next step.
+
+There are three stages in the necessity argument.
+\begin{enumerate}
+\setlength{\itemsep}{2pt}
+\setlength{\parsep}{0pt}
+\item The first two steps determine the possible beginnings of the spectrum. Either only the singlet channel differs from a constant, or the spectrum begins with one of two particular normalized triples. This follows from the geometry of two rank-one projectors and a reflection in dimension three (Section~\ref{initial}).
+\item The triple associated with the rational XXX chain has only one extension at every subsequent step. A projection removes the unknown auxiliary eigenvalue, and a simple pole of the \emph{known} rational solution rules out any change of the next eigenvalue (Section~\ref{rational}).
+\item For the other triple, which belongs to the permutation density, we study the first deviation from that density. Three-site cyclic permutations give a small Gram matrix with only three overlap parameters. Except at one specific degeneracy, comparison of consecutive sectors forces this deviation to be at the singlet. At the degeneracy, the sign representation of the three-site permutation group forces spin three; one final scalar equation determines its singlet eigenvalue (Section~\ref{permutation}).
+\end{enumerate}
+Sufficiency follows from the known regular Yang--Baxter solutions; no $R$-matrix is assumed for the unknown density.
+
+\section{Three-site reduction and recoupling identities}
+Use deficit indices $i=n-j$ and write $a_i=\lambda_{n-i}$ and $e_i$ for the eigenvalue of $E$ on the same channel. Thus $i=0$ corresponds to the maximum pair spin, and $i=n$ to the singlet. Shift $a_0=e_0=0$.
+
+Consider first the total-spin sectors $J=3S-k$, $0\le k\le n$. Coupling the first two sites to spin $j$ and then coupling to the third site is possible if $|j-S|\le J\le j+S$. Since $J\ge S$, this gives $n-k\le j\le n$. Each admissible intermediate spin contributes one copy of the spin-$J$ representation. Consequently the multiplicity space has dimension $k+1$ and a basis indexed by $i=0,\ldots,k$ in the $12$ coupling. We refer to this multiplicity space as block $k$.
+
+By invariance, the operators in \eqref{RC} act only on the multiplicity spaces. In a real orthonormal convention the recoupling matrix is the symmetric involution
+\begin{equation}\label{F}
+ F^{(k)}_{il}=(-1)^{3S+J}\sqrt{(2n-2i+1)(2n-2l+1)}
+ \begin{Bmatrix} S&S&n-i\\ S&J&n-l\end{Bmatrix}.
+\end{equation}
+In this block set $A=\diag(a_0,\ldots,a_k)$, $B=FAF$, $L=\diag(e_0,\ldots,e_k)$. The necessary equation is
+\begin{equation}\label{block}
+ \DD(A,B)=FLF-L.
+\end{equation}
+We use this equation as a necessary condition in selected total-spin sectors, together with the expansion
+\begin{equation}\label{expand}
+ \DD(A,B)=2ABA-2BAB-BA^2-A^2B+AB^2+B^2A.
+\end{equation}
+
+\subsection{The overlap data needed for the induction}
+To compare consecutive blocks we need the overlap of the last channel with its recoupled copy, two diagonal overlaps in the next block, and an independence test for its last two columns.
+
+The Racah formula gives the following overlaps. Let $m=n-k$. The last column of $F^{(k)}$ has no zero entries, and
+\begin{equation}\label{t}
+ t=F^{(k)}_{kk}=(-1)^k\frac{(2m+1)!n!}{m!(n+m+1)!}.
+\end{equation}
+For $k\ge1$, $|t|\le1/(k+1)$, since its absolute value is the product of $(m+r)/(2m+1+r)$ for $1\le r\le k$. For $m\ge1$, in the next block $F'=F^{(k+1)}$,
+\begin{equation}\label{qr}
+ q=F'_{kk}=t\frac{m-k(n+2m+1)}{2n},\qquad
+ r=F'_{k+1,k+1}=-t\frac{n+m+1}{2(2m+1)}.
+\end{equation}
+The entries $F'_{i,k+1}$ are nonzero. For $i\le k$ the ratio $F'_{ik}/F'_{i,k+1}$ is a nonzero constant independent of $i$, times
+\begin{equation}\label{ratio}
+ \frac{2j(j+1)-n(n+m+1)}m,\qquad j=n-i.
+\end{equation}
+In particular, these two columns are independent on any two rows among $0,\ldots,k-1$: the denominator column has no zero entries, and $j(j+1)$ takes distinct values at distinct nonnegative $j$. This observation will establish linear independence of several sets of orbit vectors below.
+
+For clarity, the last-column Racah sum has one term; in the next block, for pair spins $(j,m-1)$, that term has summation index $z=n+m-1+j$. For the pair spins $(j,m)$ the terms occur at $z$ and $z+1$ (a term outside the factorial range is zero). Relative to the former sum, their ratios before the positive triangle factors are $j(j-m+1)/m$ and $-(n+m+j+1)(n-j)/m$. Their sum is \eqref{ratio}. The same factorial formula gives \eqref{t} and \eqref{qr}: in the $m,m$ entry of the next block the first term relative to $t$ is $m/(2n)$, and the second has relative factor $-k(n+2m+1)/m$ to the first. This also fixes the signs. The few additional diagonal entries needed below are evaluated in Appendix~\ref{app}.
+
+\subsection{Successive determination of the auxiliary spectrum}
+The $e_i$ are uniquely determined successively by the $a_i$ whenever the preceding blocks admit a solution. Indeed, once $e_0,\ldots,e_{k-1}$ are fixed, changing $e_k$ by $\Delta e$ changes the right side of \eqref{block} by
+\[
+ \Delta e\, (\pr{Fu}-\pr{u}),
+\]
+where $u$ is the last basis vector. The two projectors are distinct for $k\ge1$, since $|F_{kk}|<1$. Thus two choices of $e_k$ for the same $a_0,\ldots,a_k$ must coincide. Induction from $e_0=0$ proves the assertion. In particular, whenever an unknown spectrum agrees with a known solution through a given channel, the corresponding auxiliary spectra agree through that channel as well. This is what permits subtraction of known solutions in the later induction steps.
+
+\section{The first nonzero channel and the initial bifurcation}\label{initial}
+\subsection{Where a nonconstant spectrum can begin}
+If the first departure from zero occurs at $k$, block $k$ sees only one rank-one term; block $k+1$ tests its compatibility.
+\begin{lemma}\label{first}
+If $a_0=0$ and $k=\min\{i:a_i\ne0\}$, then $k=1$ or $k=n$.
+\end{lemma}
+\begin{proof}
+Suppose $2\le k<n$ and write $x=a_k\ne0$. In block $k$, $A=x\pr{u}$ and $B=x\pr{v}$ with $v=F^{(k)}u$, $\langle u,v\rangle=t$. Earlier $e_i$ vanish by the uniqueness observation. For the two rank-one projections, $ABA=x^3t^2\pr{u}$ and $BAB=x^3t^2\pr{v}$; the four terms involving squares in \eqref{expand} cancel. Hence
+\[
+ \DD(A,B)=2x^3t^2(\pr{u}-\pr{v}),\qquad e_k=-2x^3t^2.
+\]
+This value must be the same in the next block, even though the overlap of the two copies of the channel changes.
+
+In block $k+1$, write $A=x\pr{u}+y\pr{w}$, $B=x\pr{v}+y\pr{z}$, with $v=F'u$, $z=F'w$. The four vectors $u,w,v,z$ are linearly independent: on the first $k$ rows, $u,w$ vanish and the restrictions of $v,z$ are independent by \eqref{ratio}. Since $u,w$ are orthogonal unit vectors, the claimed independence follows.
+
+We repeatedly use the following fact: if $f_1,\ldots,f_l$ are independent, so are the operators $|f_i\rangle\langle f_j|$. Testing against the dual vectors $f^i$, defined by $\langle f^i,f_j\rangle=\delta_{ij}$, recovers each coefficient.
+
+Put $C=(\langle f_i,g_j\rangle)$ for $(f_1,f_2)=(u,w)$ and $(g_1,g_2)=(v,z)$. It is symmetric with diagonal $(q,r)$ and nonzero off-diagonal entry. Let $(b_1,b_2)=(x,y)$. In \eqref{expand}, the two terms $-A^2B$ and $AB^2$ give the coefficient of $|f_i\rangle\langle g_j|$ as
+\[
+ -b_i^2 b_j C_{ij}+b_i b_j^2 C_{ij}
+ =b_i b_j(b_j-b_i)C_{ij}.
+\]
+The other four terms have no outer product of this type. The right side of \eqref{block} has only diagonal outer products within each pair, so the mixed coefficient for $i=1,j=2$ must vanish. As $x\ne0$ and $C_{12}\ne0$, there are only two possibilities, $y=0$ or $y=x$.
+
+If $y=0$, the rank-one computation in the new block would give $e_k=-2x^3q^2$. But $q/t<-1$ since
+\[
+ m-k(n+2m+1)+2n=-(k-1)(3m+k)<0.
+\]
+It follows that $q^2\ne t^2$, contradicting the value of $e_k$ obtained in the preceding block.
+
+If $y=x$, the coefficient of $|u\rangle\langle w|$ in $2ABA$ is $2x^3(C^2)_{12}=2x^3C_{12}(q+r)$. No other term contributes to it. Both $q$ and $r$ have sign opposite to $t$, and $C_{12}\ne0$, so the coefficient is nonzero, whereas the right side has zero coefficient. Both possibilities are impossible.
+\end{proof}
+
+The case $k=n$ is family IV. Otherwise normalize $a_1=1$. Block $k=1$ gives $e_1=-1/2$ by the rank-one computation above, with $t=-1/2$. For $n=1$ there are no further channels.
+
+\subsection{The two possible initial triples}
+For $n\ge2$, the next recoupling matrix is a reflection. Its off-diagonal block between the reflecting line and its orthogonal complement gives an identity for the known difference $e_1-e_0$.
+
+\begin{lemma}[Reflection identity]\label{reflection}
+Suppose $F=I-2\pr{w}$ for a real unit vector $w$ with all coordinates nonzero, $A=\diag(a_i)$, $L=\diag(e_i)$ and $B=FAF$. If \eqref{block} holds, then, with $p_i=w_i^2$, $\mu=\sum p_i a_i$ and $v=\sum p_i(a_i-\mu)^2$,
+\begin{equation}\label{reflect}
+ e_i-e_j=-2\big((a_i-\mu)^3-(a_j-\mu)^3-v(a_i-a_j)\big).
+\end{equation}
+\end{lemma}
+\begin{proof}
+In the decomposition $\mathbb Rw\oplus w^\perp$, write $A=\left(\begin{smallmatrix}\mu&z^t\\z&C\end{smallmatrix}\right)$ and let $T=I-\pr{w}$. Conjugation by $F$ negates the off-diagonal block, so
+\[
+ A+B=2\begin{pmatrix}\mu&0\\0&C\end{pmatrix},\qquad
+ [A,B]=2\begin{pmatrix}0&z^t(C-\mu I)\\-(C-\mu I)z&0\end{pmatrix}.
+\]
+In particular the lower-left block of $\DD(A,B)$ is $4(C-\mu I)^2z$, while that of $FLF-L$ is $-2TLw$. Since $z=(A-\mu I)w$ and $C-\mu I=T(A-\mu I)T$ on $w^\perp$, we can express this matrix equation using the diagonal matrix $M=A-\mu I$. We have $w^tMw=0$ and $w^tM^2w=v$, whence
+\[
+ (TMT)^2 z=T(M^3-vM)w.
+\]
+Thus one obtains
+\[
+ TLw=-2T\big((A-\mu I)^3-v(A-\mu I)\big)w.
+\]
+Here $v=\|z\|^2$. The difference before applying $T$ is a multiple of $w$; dividing its coordinates by $w_i$ and subtracting yields \eqref{reflect}.
+\end{proof}
+
+For $n\ge2$, the three-dimensional block 2 has $F_{11}=1/2$ and $F_{22}=n/[2(2n-1)]$ by \eqref{t}--\eqref{qr}. Its trace is 1: the trace of an involution in dimension 3 is an odd integer, and these two diagonal entries together with $|F_{00}|\le1$ allow only 1. Thus $F$ is a rank-one reflection with every $p_i=(1-F_{ii})/2>0$. Put $a_2=x$ and $p=p_2=(3n-2)/[4(2n-1)]$. Then $p_1=1/4$, $\mu=1/4+px$, $v=1/4+px^2-\mu^2$. Apply \eqref{reflect} to $e_1-e_0=-1/2$:
+\[
+ \tfrac14=1-3\mu+3\mu^2-v
+ =\tfrac14+px\big((4p-1)x-1\big).
+\]
+Consequently $a_2=0$ or $(2n-1)/(n-1)$. In our normalization the two known spectra to which these values correspond are
+\begin{align*}
+ a_i^{\rm perm}&=\frac{1-(-1)^i}{2},\\
+ a_i^{\rm XXX}&=n(H_n-H_{n-i}).
+\end{align*}
+Both start with $a_0=0$ and $a_1=1$, and their third entries are the two values just found. No other normalized initial triple is possible. The earlier $e_i$ agree with those of the corresponding known family by uniqueness. It remains to show how these two beginnings can be extended.
+
+\section{Rigidity of the rational XXX prefix}\label{rational}
+At the first differing channel, compressing to the complement of its two coupled copies eliminates all quadratic and cubic changes. We obtain a condition on two vectors.
+\begin{lemma}\label{xxx}
+If the normalized $a_2=(2n-1)/(n-1)$, then $a_i=n(H_n-H_{n-i})$ for every $i$.
+\end{lemma}
+\begin{proof}
+The claim holds through $i=2$. Let $3\le k\le n$, and suppose it holds for $i<k$. In block $k$, let $A_0=\diag(b_0,\ldots,b_k)$ with $b_i=n(H_n-H_{n-i})$ and $B_0=FA_0F$. Write $A=A_0+\delta\pr{u}$ and $B=B_0+\delta\pr{v}$ for the last basis vector $u$ and $v=Fu$. The known XXX density satisfies \eqref{block}; the earlier $e_i$ agree by uniqueness. Let $T$ be the orthogonal projection onto $\operatorname{span}(u,v)^\perp$. Applying $T$ on both sides of the difference of the two equations \eqref{block} gives, by \eqref{expand},
+\[
+ 2\delta\bigl(\pr{TA_0v}-\pr{TB_0u}\bigr)=0.
+\]
+Indeed, a changed outer factor in $ABA$ or $BAB$ vanishes after projection. For example, $T(ABA-A_0B_0A_0)T=\delta\pr{TA_0v}$. In the other terms of \eqref{expand}, any changed factor at an end likewise vanishes. A changed square is a multiple of $\pr{u}$ or $\pr{v}$, because the new channel is an eigenvector of the corresponding unperturbed operator. Finally, the change in the right side of \eqref{block} is a multiple of $\pr{v}-\pr{u}$, which vanishes under the compression. If $\delta\ne0$, the two real vectors must agree up to sign (including the possibility that both vanish). Hence $B_0u\mp A_0v\in\operatorname{span}(u,v)$, so the nonzero last-column entries imply
+\begin{equation}\label{affine}
+ (B_0u)_i/v_i=\pm b_i+\text{constant}\qquad(0\le i<k).
+\end{equation}
+It suffices to compare three component ratios in \eqref{affine}. Rather than compute the full recoupling sum for $B_0u$, we use the known regular rational spin-$S$ braided $R$-matrix \cite{Bytsko1,KRS}, normalized on pair spin $j$ by
+\[
+ \rho_j(z)=\prod_{r=j+1}^n\frac{r+z}{r-z}.
+\]
+Let $R_A(z)$ and $R_B(z)=FR_A(z)F$ be its restrictions. The braided Yang--Baxter equation is
+\[
+ R_A(s)R_B(s+z)R_A(z)=R_B(z)R_A(s+z)R_B(s).
+\]
+With $m=n-k$, the only pole at $s+z=m+1$ in this block is the simple pole of the lowest channel $j=m$. Multiply the equation by $m+1-s-z$ and set $s+z=m+1$, cancelling the common nonzero scalar. This is an evaluation of rational functions. Then, for generic $z$ and $s=m+1-z$, the column spaces of $R_A(s)\pr{v}R_A(z)$ and $R_B(z)\pr{u}R_B(s)$ agree. In particular $R_A(s)v$ and $R_B(z)u$ are proportional. Set $z=\epsilon$ and $s=m+1-\epsilon$. For $i<k$, equality of the component ratios reads
+\[
+ \frac{\rho_{n-i}(m+1-\epsilon)v_i}{\rho_m(m+1-\epsilon)v_k}
+ =\frac{(R_B(\epsilon)u)_i}{(R_B(\epsilon)u)_k}.
+\]
+The denominator on the left has a simple pole, while that on the right tends to $1$. Dividing by $\epsilon$ and taking the limit uses $R_B'(0)=2B_0/n$ and $v_k=F_{kk}$. It gives
+\begin{equation}\label{rres}
+ T_i:=\frac{(B_0u)_i}{v_i}=
+ \frac{n}{2L F_{kk}}\rho_{n-i}(m+1),\qquad
+ L=\lim_{\epsilon\to0}\epsilon\rho_m(m+1-\epsilon)\ne0.
+\end{equation}
+All factors on the right are finite and nonzero for $i<k$. Each successive quotient $T_i/T_{i-1}$ is just the additional factor in the product defining $\rho_{n-i}$. Taking differences gives
+\[
+ \frac{T_i}{T_{i-1}}=\frac{2n-k+2-i}{k-i}\quad(1\le i<k),
+ \qquad\frac{T_2-T_1}{T_1-T_0}=\frac{2n-k+1}{k-2}>
+ \frac n{n-1}=\frac{b_2-b_1}{b_1-b_0}.
+\]
+The affine relation \eqref{affine} would make these two ratios of successive differences equal, irrespective of the sign. The displayed strict inequality (using $3\le k\le n$) excludes both signs. Thus $\delta=0$, establishing the induction and family III.
+\end{proof}
+
+\section{Rigidity of the permutation prefix}\label{permutation}
+For the permutation branch, we locate the first possible deviation using the action of site permutations on a pair-channel vector.
+Suppose $a_2=0$. The normalized permutation has $a_i=(1-(-1)^i)/2$. If there is a deviation, let $k\ge3$ be its first index, $m=n-k$ and $\sigma=(-1)^k$. Make the affine change $h\mapsto I-2h$ so the base density is $\PP$. Denote $P=\PP_{12}$, $Q=\PP_{23}$ and the site cycle $(123)$ by $R$. For a pair basis vector of deficit $i$ in block $d$, the cycle sends the $((12)j,3)J$ coupling to $((23)j,1)J$. Interchanging the final angular momenta gives phase $(-1)^{S+j-J}=(-1)^{d-i}$, so the cycled vector is $(-1)^{d-i}F^{(d)}$ applied to it.
+
+\subsection{An orbit coefficient identity}
+Let $u_0,w_0$ be orthogonal pair vectors of parities $\sigma,-\sigma$, with orbits $u_i=R^iu_0$, $w_i=R^iw_0$ ($i=0,1,2$). On each orbit $P$ fixes index 0 and swaps 1,2, and $Q$ fixes index 1 and swaps 0,2, all with the corresponding parity sign. For example, $PRP=R^{-1}$ gives $Pu_1=\sigma u_2$ and $Pu_2=\sigma u_1$. The full six-vector Gram matrix is
+\begin{equation}\label{gram}
+ G=\begin{pmatrix}G(\alpha)&C\\C^t&G(\beta)\end{pmatrix},\quad
+ G(d)=(1-d)I_3+d\mathbf1\mathbf1^t,\quad
+ C=c\begin{pmatrix}0&1&-1\\-1&0&1\\1&-1&0\end{pmatrix}.
+\end{equation}
+Here $\alpha=\langle u_0,u_1\rangle$, $\beta=\langle w_0,w_1\rangle$, $c=\langle u_0,w_1\rangle$. The diagonal cross overlaps vanish because $u_i,w_i$ are orthogonal. Also $\langle u_0,w_2\rangle=-\langle u_0,w_1\rangle$, by applying $P$ to both vectors; cyclic invariance determines all other entries. 
+
+Put $U=x\pr{u_0}+y\pr{w_0}$, $V=x\pr{u_1}+y\pr{w_1}$, $A=P+U$, $B=Q+V$. Since $PQP=QPQ$, $\DD(P,Q)=2(P-Q)$. We subtract the permutation contribution and expand the remaining operators in the orbit vectors.
+
+To explain the coefficient calculation, let $\Phi$ be the matrix with columns $(u_0,u_1,u_2,w_0,w_1,w_2)$. A formal coefficient matrix $M$ represents the operator $\Phi M\Phi^t$. Since $\Phi^t\Phi=G$, multiplication of two such operators is represented by
+\begin{equation}\label{gramproduct}
+ (\Phi M\Phi^t)(\Phi N\Phi^t)=\Phi(MGN)\Phi^t.
+\end{equation}
+Likewise, left or right multiplication by $P$ or $Q$ is implemented by the corresponding signed permutation of the columns. Formula \eqref{gramproduct} is valid even when $\Phi$ is not injective: in that case we use the coefficients to expand an operator, but cannot equate them individually without first reducing to an independent set. This distinction will be important at the exceptional spin.
+
+In the formal coefficient matrix $D$ of $\DD(A,B)-\DD(P,Q)$, define
+\begin{equation}\label{coeffs}
+ \begin{aligned}
+ a_u&=2x(\alpha^2x^2+\alpha\sigma x+c^2xy+1),\\
+ b_u&=x(\sigma x(2\alpha-1)-2),\qquad e_u=-2c\sigma xy.
+ \end{aligned}
+\end{equation}
+The needed entries are
+\begin{equation}\label{orbitblocks}
+ D_{uu}=\begin{pmatrix}a_u&0&b_u\\0&-a_u&-b_u\\b_u&-b_u&0\end{pmatrix},\qquad
+ (D_{uw})_{\bullet,2}=(e_u,e_u,0)^t.
+\end{equation}
+Because $P$ and $U$ commute, and the two initial vectors have opposite parity,
+\[
+ A^2-I=x(x+2\sigma)\pr{u_0}+y(y-2\sigma)\pr{w_0},
+\]
+and likewise for $B$ on index 1. 
+
+As an example, consider the coefficient of $|u_0\rangle\langle u_2|$. In $2ABA$ it is produced by $2UVP$: first
+\[
+ 2x^2\pr{u_0}\pr{u_1}P
+   =2\sigma\alpha x^2|u_0\rangle\langle u_2|.
+\]
+The relevant term from $-BA^2-A^2B$ is $-(A^2-I)Q$; it contributes $-\sigma x(x+2\sigma)$. No other term gives this outer product. The sum is $b_u$ in \eqref{coeffs}.
+
+The same multiplication rule gives the remaining representative coefficients as follows. In the table, a displayed term means its contribution to the indicated outer-product coefficient, not the full operator.
+\begin{center}
+\begin{tabular}{@{}lll@{}}
+\toprule
+Entry & Source in the expansion & Coefficient\\
+\midrule
+$u_0,u_0$ & $2UQU$ & $2\sigma\alpha x^2$\\
+ & $2UVU$ & $2x^2(x\alpha^2+yc^2)$\\
+ & $2U$ in $AB^2+B^2A$ & $2x$\\[2pt]
+$u_0,w_2$ & $2UVP$ & $-2\sigma cxy$\\
+\bottomrule
+\end{tabular}
+\end{center}
+These sums give $a_u$ and $e_u$. Products supported at index 2 on both sides are $PVP$ and $QUQ$, diagonal there; thus the $u_2,w_2$ entry is zero.
+
+The transposition $(13)$ interchanges indices 0 and 1 with signs $\sigma,-\sigma$ on the respective orbits, and fixes index 2 up to the same signs. Conjugation exchanges $A$ and $B$ and negates $\DD(A,B)$; the formal expansion by \eqref{gramproduct} has the same equivariance. Moreover $D$ is symmetric by the transpose symmetry of \eqref{expand}. Together these symmetries give the opposite diagonal entries, the opposite $u_1,u_2$ coefficient, the vanishing $u_0,u_1$ and $u_2,u_2$ entries, and the equality of the two mixed coefficients in \eqref{orbitblocks}. No other entries of $D$ will be needed. These identities hold even for dependent orbits, and with $y=0$ require only the $u$ orbit.
+
+\subsection{First deviation and the next block}
+In block $k$ only the defect $x\ne0$ on its last vector $u_0$ is present. Its overlap is $\alpha=t$ by the cycle formula. The orbit is independent since its Gram matrix has eigenvalues $1+2t$ on the constant line and $1-t$ on the orthogonal plane. Both are positive by \eqref{t} and $k\ge3$. Earlier $E$-eigenvalues agree with the base $E=-2\PP$ up to a common scalar, which is immaterial; subtracting the base equation leaves right-hand side $\eta(\pr{u_1}-\pr{u_0})$. In the independent outer-product basis, the off-diagonal coefficient $b_u$ must therefore vanish, and the $u_0,u_0$ coefficient equals $-\eta$. Since $x\ne0$, \eqref{coeffs}--\eqref{orbitblocks} imply
+\begin{equation}\label{defect}
+ x=\frac{2}{\sigma(2t-1)},\qquad
+ \eta=-2x(t^2x^2+t\sigma x+1).
+\end{equation}
+If $k=n$, then $t=(-1)^n/(n+1)$, and the density $\PP+xP_0$ is precisely family II after multiplication by $(n+1)/2-(-1)^n$. No deviation gives family I. In all other cases, the candidate defect \eqref{defect} must be compatible with the next block.
+
+If $m\ge1$, pass to block $k+1$ with additional defect $y$ on channel $m-1$ and orbit $w_i$. Now $\alpha=-q$, $\beta=r$ by \eqref{qr} and the cycle formula; $c\ne0$ by the last-column property. For $k\ge4$ the six orbit vectors are independent. To see this, separate the two eigenspaces of $P$ and use the following triples:
+\[
+ \begin{array}{c|ccc}
+ \text{pair parity}&\multicolumn{3}{c}{\text{vectors}}\\ \hline
+ \sigma &u_0&u_1+u_2&w_1-w_2\\
+ -\sigma&w_0&w_1+w_2&u_1-u_2
+ \end{array}
+\]
+In the first $k$ rows of block $k+1$, each pair parity occurs at least twice. On the rows of a given parity, the last two vectors in its triple are nonzero scalar multiples of the restrictions of the recoupled columns $k,k+1$ (in the corresponding order). This follows from the signed action of $P$ and the cycle formula. Their restrictions are independent by \eqref{ratio}; the first vector in the triple vanishes on those rows and is itself nonzero. Each triple is thus independent, and the two triples belong to orthogonal spaces.
+
+The right-hand difference from the base equation contains only diagonal orbit terms, so the $u_0,w_2$ coefficient $e_u=-2c\sigma xy$ vanishes, forcing $y=0$. With no additional defect, the $u_0,u_2$ coefficient $b_u$ then requires $x=2/[\sigma(2\alpha-1)]$. But $\alpha=-q\ne t$ since $q/t<-1$, contrary to \eqref{defect}. 
+
+\subsection{The degenerate deviation at \texorpdfstring{$k=3$}{k=3}}
+Only a possible nonterminal deviation at $k=3$ remains. Here the previous independence argument fails in a specific way: in block 4 one pair parity has only one earlier row instead of two. In fact for $n\ge4$, $t=-n/[4(2n-3)]$ and the next-block overlap $\alpha=-q=-1/2$. The $u$-orbit Gram matrix has constant-line eigenvalue $1+2\alpha=0$ and plane eigenvalue $1-\alpha=3/2$. Consequently its only relation is $u_0+u_1+u_2=0$. The coefficient $b_u$ is no longer an independent constraint. In the opposite pair-parity space $w_0,w_1+w_2,u_1-u_2$ are independent by the two top even rows $0,2$ and \eqref{ratio}. In the odd space $u_0,w_1-w_2$ are independent by the nonzero last-column entry on top row 1. Hence $u_0,u_1,w_0,w_1,w_2$ are independent, and the stated relation is the only one. Substituting $u_2=-u_0-u_1$ into the formal expansion of the cubic equation leaves the $u_0,w_2$ coefficient unchanged: the only additional contribution could come from the $u_2,w_2$ entry, which is zero in \eqref{orbitblocks}. The reduced basis is independent, so this coefficient must still vanish. Again $y=0$. 
+
+Return to the original normalization $a_1=1$. Formula \eqref{defect} gives $a_3=n/(5n-6)$. Since $\sigma=-1$, the permutation eigenvalue on that channel is $-1$ in the affine normalization; hence $a_3=1-x/2$ in terms of the defect variable. Writing $d=a_3$, one has $tx=-d$ and $x=2(1-d)$, which give
+\[
+ \eta=-2x(d^2+d+1)=-4(1-d^3).
+\]
+Under $h\mapsto I-2h$, the auxiliary differences scale by $(-2)^3=-8$. The normalized permutation auxiliary value on the odd channel is $-1/2$, so $e_3=-1/2-\eta/8=-d^3/2$. Block 4 now has $a_4=0$ and $e_4=0$: with $y=0$ the difference of both sides is supported on outer products of the $u$ orbit only, so independence of the five basis vectors forces zero change on the $w$ orbit. Therefore the prefix at deficit 4 is
+\begin{equation}\label{prefix}
+ (a_0,\ldots,a_4)=(0,1,0,d,0),\qquad
+ (e_0,\ldots,e_4)=(0,-1/2,0,-d^3/2,0),\qquad d=\frac n{5n-6}.
+\end{equation}
+
+For $n=4$, all the pair-spin eigenvalues have now been determined, but they have not yet been tested in every three-site sector. We use the $J=1$ block, which lies below the sequence of blocks used so far and contains pair spins $3,2,1$. Its recoupling diagonal is $(1/5,1/2,3/10)$ (Appendix~\ref{app}); thus it is a rank-one reflection with weights $(2/5,1/4,7/20)$. The eigenvalues of $A$ are $(1,0,2/7)$, giving $\mu=1/2$ and $v=5/28$. Equation \eqref{reflect} would give the difference of the first and second $E$-eigenvalues as $-2(1/4-5/28)=-1/7$, whereas \eqref{prefix} gives $-1/2$. Hence $n\ne4$.
+
+\subsection{The sign representation in block 5}\label{signsection}
+Suppose $n\ge5$. The exceptional prefix \eqref{prefix} makes $A$ and $L$ vanish on the even pair-deficit channels of block 5. We exploit the permutation symmetry on the remaining three-dimensional odd space. Let $U$ be the isometric inclusion of the three-dimensional odd space, in the order $1,3,5$, and let $V=RU$. Write
+\[
+ a=\diag(1,d,X),\qquad e=\diag(-1/2,-d^3/2,Y),
+\]
+where $X=a_5$, $Y=e_5$. Then $A=UaU^t$, $B=VaV^t$, and the right-hand side of \eqref{block} is $VeV^t-UeU^t$. Put $C=U^tV$. The transposition $P$ acts as $-I$ on the odd space, and $PRP=R^{-1}$. Therefore
+\[
+ C=\tfrac12 U^t(R+R^{-1})U=-\tfrac12 I+\tfrac32\Pi,
+ \qquad \Pi=\tfrac13 U^t(I+R+R^2)U.
+\]
+The average $(I+R+R^2)/3$ is the orthogonal projector onto vectors fixed by the cycle; since $P$ sends $R$ to $R^{-1}$, the average preserves the odd space. Its restriction $\Pi$ is therefore an orthogonal projection. A vector in its image is fixed by the cycle and negated by the transposition. As these generate the three-site permutation group, the image is exactly the sign subrepresentation in this multiplicity space. The diagonal of $C$ equals the odd diagonal of $F^{(5)}$, since $R$ and $F$ agree on these columns. The Racah evaluations in Appendix~\ref{app} give
+\begin{equation}\label{weights}
+\begin{aligned}
+ p_1&=\frac{(3n-8)(3n-5)}{4(2n-5)(2n-3)},\\
+ p_3&=\frac{n(3n-8)}{6(2n-7)(2n-3)},\\
+ p_5&=\frac{5(n-4)(3n-7)}{12(2n-7)(2n-5)},
+\end{aligned}
+\qquad p_i=\frac{1+2C_{ii}}3.
+\end{equation}
+Their sum is 1, and all are positive for $n\ge5$. Since the trace of the projection is its rank, $\Pi=ss^t$ for a real unit vector $s$ with $s_i^2=p_i>0$. Thus the compressed cycle has eigenvalue $1$ on the line $\mathbb Rs$ and eigenvalue $-1/2$ on its orthogonal plane. Set $W=s^\perp$ in the three-dimensional odd space, and denote its orthogonal projector by $T$.
+
+The line $Us=Vs$ is shared by the two embeddings, whereas the two images of $W$ are independent. Indeed, for an orthonormal basis of $W$ the combined Gram matrix of the images under $U,V$ is
+\[
+ \begin{pmatrix}I&-I/2\\-I/2&I\end{pmatrix},
+\]
+which is positive definite (its eigenvalues are $1/2$ and $3/2$). Both images are orthogonal to $Us=Vs$. We can consequently distinguish the within-plane and cross-plane coefficients of the cubic equation without resolving coefficients involving the shared line.
+
+Using \eqref{expand}, for example $ABA=UaCaCaU^t$ and $AB^2=UaCa^2V^t$. Since $C$ is symmetric, the entire equation becomes
+\begin{equation}\label{oddexpand}
+ UHU^t-VHV^t+UKV^t-VKU^t=0,
+ \quad H=2aCaCa+e,\quad K=aCa^2-a^2Ca.
+\end{equation}
+Choose an orthonormal basis of $W$. In the independent set consisting of $Us$ and the two images of this basis, the coefficient block from $UW$ to $UW$ is the restriction of $H$ to $W$, and the block from $VW$ to $UW$ is the restriction of $K$. Independence of the outer products implies
+\[
+ THT=0,\qquad TKT=0.
+\]
+The skew condition is especially useful because it contains no auxiliary eigenvalue $Y$. With $C=-I/2+3ss^t/2$, the terms in $K$ proportional to the identity cancel. Write $z=Tas$ and $z_2=Ta^2s$. Then
+\[
+ TKT=\tfrac32(zz_2^t-z_2z^t)=0.
+\]
+This identity says that $z,z_2$ are linearly dependent. Equivalently, $s,as,a^2s$ cannot span the whole odd space. But their determinant is the Vandermonde expression
+\[
+ \det(s,as,a^2s)=s_1s_3s_5(d-1)(X-1)(X-d).
+\]
+Every coordinate of $s$ is nonzero, so if $1,d,X$ were distinct, the vectors $s,as,a^2s$ would be independent, and so would $z,z_2$. Since $0<d<1$, it follows that
+\begin{equation}\label{twoeigs}
+ X\in\{1,d\}.
+\end{equation}
+There are now just two possible spectra, rather than a continuous unknown $X$. To extract the remaining constraint, choose a nonzero $w\in W$ supported on the two channels with eigenvalue $X$ (one is channel 5). Both coordinates of $w$ there are nonzero because both corresponding coordinates of $s$ are nonzero. We have $aw=Xw$ and $Cw=-w/2$. Thus
+\[
+ 0=w^tHw=\frac{X^3}{2}\|w\|^2+w^tew.
+\]
+The other channel already has auxiliary eigenvalue $-X^3/2$, so the contribution of that channel cancels. The remaining term is $(Y+X^3/2)w_5^2$, yielding $Y=-X^3/2$. In particular $e=-a^3/2$.
+
+Having fixed the auxiliary matrix, the symmetric compression determines the spin. Put $\mu=s^tas$. Expanding $2aCaCa+e$ using $C=-I/2+3ss^t/2$, the term $a^3/2$ cancels $e$. The remaining expression is
+\[
+ H=-\tfrac32(a^2ss^ta+ass^ta^2)+\tfrac92\mu\,ass^ta.
+\]
+Compression to $W$ yields
+\[
+ THT=\tfrac32\big(3\mu zz^t-z_2z^t-zz_2^t\big).
+\]
+But $a$ has only the eigenvalues $1$ and $d$, so $(a-I)(a-dI)=0$. Hence $z_2=(1+d)z$, with $z\ne0$ because $s$ has nonzero components in both eigenspaces. The condition $THT=0$ now reduces to the single weighted-mean identity
+\[
+ 3\mu=2(1+d),\qquad \mu=p_1+d p_3+X p_5.
+\]
+This is the constraint that singles out the exceptional spin. The two possibilities in \eqref{twoeigs} give, by \eqref{weights} and $d=n/(5n-6)$,
+\[
+ 3\mu-2(1+d)=\begin{cases}
+ \dfrac{(n-6)(3n-7)}{(2n-7)(5n-6)},&X=1,\\[4pt]
+ -\dfrac{3n(3n-7)}{2(2n-5)(5n-6)},&X=d.
+ \end{cases}
+\]
+The second expression never vanishes for $n\ge5$, whereas the first vanishes exactly at $n=6$. It follows that $n=6$, $a_5=1$, and $e_5=-1/2$. The sign line thus determines the exceptional spin through a two-valued spectrum and a weighted mean.
+
+\subsection{The final singlet channel at spin three}
+It remains to determine $a_6=X$ at $n=6$. Work in the final block $k=6$ after the same affine change $h\mapsto I-2h$. Relative to $P$, the defect on channel $i=3$ is $x=3/2$ and the singlet defect is $y=-2X$. The cyclic orbits of these channels are $u_i,w_i$ as above, with $\sigma=-1$, and
+\[
+ \alpha=-F^{(6)}_{33}=\tfrac12,\qquad \beta=F^{(6)}_{66}=\tfrac17,\qquad c^2=\tfrac17.
+\]
+The diagonal value is in Appendix~\ref{app}; the cross value follows from the singlet overlap $|F^{(6)}_{36}|^2=(2\cdot3+1)/7^2$. In general this overlap follows from the maximally mixed one-site reduction of the spin-zero state: the partial trace of $P_j$ on one site is $(2j+1)I/(n+1)$ by invariance and trace. The known $E$ defect on channel 3 in this affine normalization is $\eta=-63/16$ by \eqref{defect} (at $k=3$, $t=-1/6$).
+
+We seek a matrix element that eliminates the unknown auxiliary singlet coefficient and all terms nonlinear in $y$.
+
+First take the cyclic-invariant sum $f=u_0+u_1+u_2$. The cross block in \eqref{gram} has zero column sums, so $f$ is orthogonal to all three $w_i$. This removes every coefficient row associated with the singlet orbit. Next take the difference $u_0-u_1$, whose overlaps with $w_0$ and $w_1$ are both $c$. Subtract its orthogonal projection onto $\operatorname{span}(w_0,w_1)$:
+\[
+ z=u_0-u_1-\frac{c}{1+\beta}(w_0+w_1).
+\]
+Indeed the two overlaps of $w_0+w_1$ with $w_0,w_1$ are both $1+\beta$. Thus $z\perp w_0,w_1$, and in the mixed coefficient block only its last column can contribute. In particular the unknown singlet term in $E_{23}-E_{12}$ contributes nothing to the $(f,z)$ matrix element. Importantly, the relevant column in \eqref{orbitblocks} is linear in $y$, and the $u,u$ block is also at most linear in $y$.
+
+The remaining overlaps follow directly from \eqref{gram}:
+\begin{align*}
+ \langle f,u_i\rangle&=1+2\alpha=2,\\
+ \langle u_0-u_1,z\rangle&=2(1-\alpha)-\frac{2c^2}{1+\beta}=\frac34,\\
+ \langle w_2,z\rangle&=-2c-\frac{2\beta c}{1+\beta}=-\frac94c.
+\end{align*}
+Summing the rows of $D_{uu}$ and the entries of the last column of $D_{uw}$ in \eqref{orbitblocks} leaves only $a_u+b_u$ and $2e_u$. The residual cubic equation therefore gives
+\[
+\begin{aligned}
+0&=\langle f,[\DD(A,B)-\DD(P,Q)-\eta(\pr{u_1}-\pr{u_0})]z\rangle\\
+ &=2\left[(a_u+b_u+\eta)\frac34+2e_u\left(-\frac{9c}4\right)\right]\\
+ &=2\left[\left(-\frac92+\frac{9y}{14}\right)\frac34-\frac{54c^2 y}4\right]
+ =-\frac{27}{28}(3y+7).
+\end{aligned}
+\]
+Consequently $y=-7/3$ and $X=7/6$. Restoring the normalization $a_0=0,a_1=1$, the entire deficit spectrum is
+\[
+ (a_0,\ldots,a_6)=(0,1,0,1/4,0,1,7/6).
+\]
+The affine transformation $a_i\mapsto24a_i-17$ produces family V in \eqref{list}. No independence of the six orbit vectors was needed in this last block: we have used a matrix element of the actual operator, rather than equating formal coefficients.
+
+\section{Completion of the proof}
+The necessity argument exhausts the branches in Table~\ref{branches}.
+
+\begin{table}[H]
+\centering\small
+\begin{tabular}{@{}p{0.64\linewidth}l@{}}
+\toprule
+Spectral condition in the necessity proof & Family in \eqref{list}\\
+\midrule
+First nonzero channel is the singlet & IV (singlet projector)\\
+Rational initial triple; unique continuation & III (XXX)\\
+Permutation initial triple; no deviation & I (permutation)\\
+Permutation initial triple; first deviation at singlet & II (orthogonal/symplectic)\\
+Nonterminal deviation at channel 3, with $n=6$ & V ($G_2$ exception)\\
+\bottomrule
+\end{tabular}
+\caption{Exhaustion of the spectral branches (coincidences at small spins are understood).}\label{branches}
+\end{table}
+
+For sufficiency, the regular unitary braided Yang--Baxter solutions in \cite[arXiv version, Eqs.~(12)--(15), (18)]{Bytsko1} have derivatives affinely equivalent to I, III, II, IV, V in that order. For $n=1$, the single-projector family IV coincides with I. For completeness, write a regular unitary solution as $R(z)=I+zh+z^2h^2/2+z^3r_3/6+O(z^4)$; unitarity gives the quadratic coefficient. Here $r_3=R^{(3)}(0)$ is a two-site operator. To see explicitly why this suffices, use $A=h_{12}$ and $B=h_{23}$. In the difference of the two sides of the braided Yang--Baxter equation, the coefficient of $s^2z$, multiplied by two, is
+\[
+ (r_3)_{23}-(r_3)_{12}+A^3-B^3
+ +2ABA-2BAB-BA^2-A^2B+AB^2+B^2A.
+\]
+Its vanishing gives \eqref{RC} with $E=h^3-r_3$. This proves sufficiency, including the exceptional case, and concludes Theorem~\ref{main}. No $R$-matrix is assumed for an unknown density.
+
+\appendix
+\section{Diagonal Racah evaluations}\label{app}
+For reference, the ordinary Wigner $6j$ symbol in our convention uses the Racah formula
+\begin{align*}
+ \begin{Bmatrix}a&b&c\\d&e&f\end{Bmatrix}
+ &=\Delta(a,b,c)\Delta(a,e,f)\Delta(d,b,f)\Delta(d,e,c)\\
+ &\quad\times\sum_z\frac{(-1)^z(z+1)!}{
+ (z-a-b-c)!(z-a-e-f)!(z-d-b-f)!(z-d-e-c)!}\\[-1pt]
+ &\hspace{5em}\times\frac{1}{(a+b+d+e-z)!(a+c+d+f-z)!(b+c+e+f-z)!},\\
+ \Delta(a,b,c)&=\sqrt{\frac{(a+b-c)!(a-b+c)!(-a+b+c)!}{(a+b+c+1)!}}.
+\end{align*}
+Only terms with nonnegative integer factorial arguments are included. The off-diagonal formulas in Section 2 follow from one or two summands. For the exceptional analysis, the remaining data consist only of diagonal overlaps. For $k\le n$ the Racah formula on a diagonal, after substituting the summation index $z=3n-k-r$, reads
+\begin{align*}
+F^{(k)}_{ii}&=d_i^2\sum_{r=\max(0,2i-k)}^i
+\frac{(-1)^r(3n-k-r+1)!}{(n+i-k-r)!^2(n-2i+r)!(i-r)!^2r!(k+r-2i)!},\\
+d_i^2&=\frac{(2n-2i+1)i!(n-i)!^2(n-k+i)!(k-i)!(2n-k-i)!}
+{(2n-i+1)!(3n-k-i+1)!}.
+\end{align*}
+A term with a negative factorial argument is omitted. Cancelling factorial ratios gives the following short sums (the first three rows hold for $n\ge5$):
+\[
+\begin{array}{c|c|c}
+(k,i)&r&F^{(k)}_{ii}\\ \hline
+(5,1)&0,1&\dfrac{(n-3)(11n-20)}{8(2n-5)(2n-3)}\\[4pt]
+(5,3)&1,2,3&-\dfrac{5n^2-32n+42}{4(2n-7)(2n-3)}\\[4pt]
+(5,5)&5&-\dfrac{n(n-1)}{8(2n-7)(2n-5)}\\[4pt]
+(6,3),\ n=6&0,1,2,3&-1/2
+\end{array}
+\]
+The $(6,6)$ entry at $n=6$ follows from \eqref{t}. For the $n=4,J=1$ lower block, the diagonal entries in order $j=3,2,1$ are $(-1)^7(2j+1)\left\{\begin{smallmatrix}2&2&j\\2&1&j\end{smallmatrix}\right\}$; the respective Racah sum ranges for $z$ are $\{7\}$, $\{6,7\}$, $\{5\}$, yielding $1/5,1/2,3/10$. These evaluations, the overlap identities of Section 2, and the signed-permutation coefficient identity \eqref{orbitblocks} are the only recoupling algebra beyond the rank-one rational-branch argument.
+
+\begin{thebibliography}{9}
+\bibitem{Kennedy} T. Kennedy, Solutions of the Yang--Baxter equation for isotropic quantum spin chains, \emph{J. Phys. A} \textbf{25}, 2809--2817 (1992).
+\bibitem{BY} M. T. Batchelor and C. M. Yung, Integrable $su(2)$-invariant spin chains and the Haldane conjecture, \href{https://arxiv.org/abs/cond-mat/9406072}{arXiv:cond-mat/9406072} (1994).
+\bibitem{Bytsko1} A. G. Bytsko, On higher spin $U_q(sl_2)$-invariant $R$-matrices, \emph{St. Petersburg Math. J.} \textbf{17}, 393--408 (2006), \href{https://arxiv.org/abs/math/0412482}{arXiv:math/0412482}.
+\bibitem{Bytsko2} A. G. Bytsko, On one ansatz for $sl_2$-invariant $R$-matrices, \emph{J. Math. Sci.} \textbf{143}, 2754--2764 (2007), \href{https://arxiv.org/abs/math/0609519}{arXiv:math/0609519}.
+\bibitem{SS} N. Shiraishi and M. Sanatani, Dichotomy theorem separating complete integrability and nonintegrability of isotropic spin chains, \emph{Phys. Rev. B} \textbf{113}, L241111 (2026), \href{https://doi.org/10.1103/lcn4-tbcm}{doi:10.1103/lcn4-tbcm}; see also \href{https://arxiv.org/abs/2504.14315}{arXiv:2504.14315}.
+\bibitem{KRS} P. P. Kulish, N. Yu. Reshetikhin and E. K. Sklyanin, Yang--Baxter equation and representation theory: I, \emph{Lett. Math. Phys.} \textbf{5}, 393--403 (1981).
+\end{thebibliography}
+\end{document}

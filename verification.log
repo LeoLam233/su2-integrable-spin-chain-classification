@@ -1,0 +1,10 @@
+block 5, channel 1, 2 diagonal Racah summands: PASS
+block 5, channel 3, 3 diagonal Racah summands: PASS
+block 5, channel 5, 1 diagonal Racah summands: PASS
+sign-line weights and two mean obstructions (uniform symbolic identities): PASS
+reflection bifurcation and n=4 lower-block obstruction: PASS
+orbit identities, degenerate reduction, and final singlet scalar: PASS
+independent Wigner diagonal and sign-projection cross-check: PASS
+exceptional density verified on every physical sector J=0,...,9: PASS
+overlap formulas independently cross-checked on representative blocks: PASS
+SymPy 1.14.0 ; ALL CHECKS PASSED
